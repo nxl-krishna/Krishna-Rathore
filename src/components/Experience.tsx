@@ -1,24 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Users } from "lucide-react";
+import { useState } from "react";
+import { Briefcase, GraduationCap } from "lucide-react";
 import styles from "./Experience.module.css";
 
 const timelineData = [
   {
     type: "experience",
+    title: "Contractual Software Development Engineer",
+    subtitle: "Xelron AI",
+    duration: "August 2026 – Present",
+    location: "Remote",
+    description: "Designing and validating software engineering benchmark tasks for AI coding agents.",
+    details: [
+      "Designed and validated 30+ benchmark tasks, including automated test suites and task environment debugging.",
+      "Developed test cases and debugged evaluation workflows with Python, Linux/Bash, JavaScript, and JSON.",
+      "Recognized as a top performer for high-quality benchmark tasks and reliable evaluation workflows."
+    ],
+    icon: Briefcase
+  },
+  {
+    type: "experience",
     title: "Research Intern",
     subtitle: "Indian Institute of Information Technology Vadodara",
-    duration: "May 2026 – Present",
+    duration: "May 2026 – July 2026",
     location: "Gandhinagar, Gujarat",
-    description: "Developing machine learning and computer vision classification frameworks for medical imaging diagnostics.",
+    description: "Developed a deep reinforcement learning framework for energy-efficient data collection in UAV-assisted IoT networks.",
     details: [
-      "Built brain MRI tumor analysis pipelines for IDH and MGMT marker identification.",
-      "Achieved 74.5% classification AUC and 0.72 balanced survival rate prediction accuracy."
+      "Built a D3QN framework to jointly optimize UAV trajectories and IoT device scheduling while minimizing Age of Information (AoI).",
+      "Compared against RR, MAF, AWN, DQN, and DDQN; achieved 5.79% lower AoI and 8.53% lower energy use than DQN.",
+      "Co-authored a paper accepted for IEEE TENCON 2026."
     ],
-    icon: Briefcase,
-    color: "#06b6d4"
+    icon: Briefcase
   },
   {
     type: "education",
@@ -31,22 +44,7 @@ const timelineData = [
       "Current cumulative CPI: 7.17 / 10.00",
       "Active participation in campus coding communities and research work."
     ],
-    icon: GraduationCap,
-    color: "#a855f7"
-  },
-  {
-    type: "volunteering",
-    title: "Dance Club Mod5 - Core Member",
-    subtitle: "IIIT Vadodara Cultural Council",
-    duration: "September 2023 – Present",
-    location: "Gandhinagar, Gujarat",
-    description: "Organizing workshops, cultural festivals, and leading performing teams for campus functions.",
-    details: [
-      "Co-coordinated a college Garba Workshop, managing choreography and teaching 100+ students.",
-      "Collaborated with club council to pitch, organize, and execute annual cultural festivals."
-    ],
-    icon: Users,
-    color: "#f43f5e"
+    icon: GraduationCap
   },
   {
     type: "education",
@@ -58,8 +56,7 @@ const timelineData = [
     details: [
       "Scored a cumulative percentage of 78.20% in board examinations."
     ],
-    icon: GraduationCap,
-    color: "#3b82f6"
+    icon: GraduationCap
   },
   {
     type: "education",
@@ -71,8 +68,7 @@ const timelineData = [
     details: [
       "Scored a cumulative board percentage of 91.20%."
     ],
-    icon: GraduationCap,
-    color: "#3b82f6"
+    icon: GraduationCap
   }
 ];
 
@@ -83,40 +79,17 @@ export default function Experience() {
     ? timelineData 
     : timelineData.filter((item) => item.type === filter);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" as const }
-    }
-  };
-
   return (
     <section id="experience" className={styles.experienceSection}>
-      <div className="glow-spot" style={{ top: "30%", left: "80%" }}></div>
-
-      <motion.div
+      <div
         className={styles.headerArea}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
       >
         <span className={styles.sectionBadge}>My Journey</span>
-        <h2 className={`${styles.sectionTitle} gradient-text`}>Experience & Education</h2>
+        <h2 className={styles.sectionTitle}>Experience & Education</h2>
         <p className={styles.sectionSubtitle}>
-          An overview of my academic pathway, corporate internships, and voluntary contributions.
+          Professional experience and education, based on my current resume.
         </p>
-      </motion.div>
+      </div>
 
       {/* Filter Tabs */}
       <div className={styles.filterContainer}>
@@ -138,46 +111,28 @@ export default function Experience() {
         >
           Education
         </button>
-        <button
-          className={`${styles.filterBtn} ${filter === "volunteering" ? styles.activeFilter : ""}`}
-          onClick={() => setFilter("volunteering")}
-        >
-          Volunteering
-        </button>
       </div>
 
       {/* Timeline Tree */}
-      <motion.div
+      <div
         key={filter}
         className={styles.timeline}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
       >
         <div className={styles.timelineLine}></div>
         {filteredData.map((item, index) => {
           const IconComponent = item.icon;
           return (
-            <motion.div
+            <article
               key={index}
               className={styles.timelineItem}
-              variants={itemVariants}
             >
               {/* Timeline Icon */}
-              <div 
-                className={styles.timelineIcon}
-                style={{ 
-                  backgroundColor: "#030712",
-                  border: `2px solid ${item.color}`,
-                  boxShadow: `0 0 10px ${item.color}30`
-                }}
-              >
-                <IconComponent size={18} style={{ color: item.color }} />
+              <div className={styles.timelineIcon}>
+                <IconComponent size={18} />
               </div>
 
               {/* Card content */}
-              <div className={`${styles.timelineContent} glass-card`}>
+              <div className={styles.timelineContent}>
                 <div className={styles.cardHeader}>
                   <div className={styles.titleLine}>
                     <h3 className={styles.title}>{item.title}</h3>
@@ -201,10 +156,10 @@ export default function Experience() {
                   </ul>
                 )}
               </div>
-            </motion.div>
+            </article>
           );
         })}
-      </motion.div>
+      </div>
     </section>
   );
 }

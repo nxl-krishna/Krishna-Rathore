@@ -7,17 +7,18 @@ import { Github, Linkedin } from "@/components/Icons";
 import styles from "./Header.module.css";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Achievements", href: "#achievements" },
-  { label: "Research", href: "#research" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
+  { number: "01", label: "Home", href: "#home" },
+  { number: "02", label: "Work", href: "#projects" },
+  { number: "03", label: "Research", href: "#research" },
+  { number: "04", label: "Journey", href: "#experience" },
+  { number: "05", label: "Skills", href: "#skills" },
+  { number: "06", label: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +29,26 @@ export default function Header() {
       }
     };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleSections[0]) {
+          setActiveSection(`#${visibleSections[0].target.id}`);
+        }
+      },
+      { rootMargin: "-25% 0px -60% 0px", threshold: [0, 0.2, 0.5] }
+    );
+
+    document.querySelectorAll("main section[id], footer[id]").forEach((section) => observer.observe(section));
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -50,11 +70,8 @@ export default function Header() {
   };
 
   return (
-    <motion.header
+    <header
       className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className={styles.container}>
         <a href="#home" onClick={(e) => scrollToSection(e, "#home")} className={styles.logo}>
@@ -69,8 +86,9 @@ export default function Header() {
               key={item.href}
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
-              className={styles.navLink}
+              className={`${styles.navLink} ${activeSection === item.href ? styles.activeNavLink : ""}`}
             >
+              <span className={styles.navNumber}>{item.number}</span>
               {item.label}
             </a>
           ))}
@@ -94,6 +112,8 @@ export default function Header() {
           className={styles.menuToggle}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -104,6 +124,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <motion.div
             className={styles.mobileDrawer}
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -116,8 +137,9 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
-                    className={styles.mobileNavLink}
+                    className={`${styles.mobileNavLink} ${activeSection === item.href ? styles.activeMobileNavLink : ""}`}
                   >
+                    <span className={styles.navNumber}>{item.number}</span>
                     {item.label}
                   </a>
                 ))}
@@ -126,7 +148,7 @@ export default function Header() {
                 <a href="https://github.com/nxl-krishna/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.c om/in/krishnarathore-a8a93628b/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                <a href="https://www.linkedin.com/in/krishnarathore-a8a93628b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={styles.socialIcon}>
                   <Linkedin size={20} />
                 </a>
                 <a href="mailto:krishnarathore2792005@gmail.com" className={styles.socialIcon}>
@@ -137,6 +159,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

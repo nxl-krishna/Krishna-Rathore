@@ -1,158 +1,129 @@
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, ShieldCheck, ShoppingCart, MessageSquare } from "lucide-react";
-import { Github } from "@/components/Icons";
 import styles from "./Projects.module.css";
+import ProjectPreview from "./ProjectPreview";
 
 const projects = [
   {
-    title: "Network Security & Phishing Detection",
-    description: "An end-to-end phishing detection system implementing data validation pipelines and containerized FastAPI services, tracked via MLflow and hosted on AWS EC2.",
+    title: "Velo: AI-Assisted Engineering Project Manager",
+    type: "Product engineering",
+    preview: "velo",
+    description: "A full-stack project management platform with collaborative Kanban boards, role-based access, and AI-assisted workflows.",
     bullets: [
-      "Built models with XGBoost, Random Forest, and AdaBoost for highly accurate phishing URL classification.",
-      "Leveraged Docker for microservice containment and MLflow for experimental tracking & metadata logging."
+      "Built interactive drag-and-drop Kanban boards with multi-tier role-based access control.",
+      "Added Gemini task summaries and assignee suggestions, JWT authentication, password recovery, and BullMQ/Redis background notifications."
     ],
-    tech: ["Python", "FastAPI", "MongoDB", "scikit-learn", "MLflow", "Docker", "AWS EC2"],
-    github: "https://github.com",
-    demo: null,
-    icon: ShieldCheck,
-    color: "#06b6d4" // teal
+    tech: ["Next.js 16", "TypeScript", "PostgreSQL", "Prisma", "Gemini API", "BullMQ", "Redis"],
   },
   {
-    title: "Multimodal RAG E-Commerce Assistant",
-    description: "A hybrid-retrieval RAG assistant facilitating semantic search over product catalogs, using embeddings, vector storage, and metadata filtering.",
+    title: "Finova: Personal Finance & Portfolio Intelligence",
+    type: "Fintech",
+    preview: "finova",
+    description: "A personal finance dashboard for expenses, budgets, net worth, and investment portfolio performance.",
     bullets: [
-      "Developed multimodal catalog indexing utilizing LangChain, FAISS vector index, and HuggingFace models.",
-      "Implemented hybrid retrieval combined with LLM-driven structured queries for context-aware recommendations."
+      "Tracked expenses, monthly category budgets, net worth, asset cost basis, and realized/unrealized trade P&L.",
+      "Added cash flow charts, normalized PostgreSQL data, JWT httpOnly sessions, Server Actions, and user-level data isolation."
     ],
-    tech: ["Python", "LangChain", "FAISS", "HuggingFace", "Groq", "LLMs"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    icon: ShoppingCart,
-    color: "#a855f7" // purple
+    tech: ["Next.js 15", "TypeScript", "PostgreSQL", "Prisma", "Recharts", "JWT"],
   },
   {
-    title: "WhisperBox: Anonymous Grievance Redressal",
-    description: "A secure feedback collection app that guarantees untraceable submission logs through cryptographic signatures, featuring automated AI content screening.",
+    title: "Yuva AI: Multi-Agent Research System",
+    type: "Generative AI",
+    preview: "yuva",
+    description: "A multi-agent research assistant that searches, retrieves, and evaluates evidence with citation grounding.",
     bullets: [
-      "Integrated RSA Blind Signatures to enable public verify-ability while decoupling user identities from data payloads.",
-      "Implemented Gemini AI API moderation to catch inappropriate posts, deploying a production Next.js & Firebase stack."
+      "Built a cyclical LangGraph workflow with a supervisor, parallel web search, and evaluator-optimizer review loop.",
+      "Implemented corrective RAG with semantic retrieval, relevance grading, query reformulation, and citation evaluation against a single-agent baseline."
     ],
-    tech: ["Next.js", "TypeScript", "Firebase", "Gemini AI", "RSA Cryptography"],
-    github: "https://github.com",
-    demo: "https://example.com",
-    icon: MessageSquare,
-    color: "#f43f5e" // rose
+    tech: ["LangGraph", "LangChain", "Python", "Gemini", "Vector Search", "Docker"],
+  },
+  {
+    title: "Customer Churn Prediction & Retention Platform",
+    type: "Machine learning",
+    preview: "churn",
+    description: "An end-to-end machine learning workflow and dashboard for assessing customer churn risk.",
+    bullets: [
+      "Processed 7,000+ records with data cleaning, feature engineering, and encoding.",
+      "Compared Logistic Regression, Random Forest, and HistGradientBoosting; achieved 88.2% recall and 0.842 ROC-AUC."
+    ],
+    tech: ["Python", "Scikit-learn", "Streamlit", "Pandas"],
+  },
+  {
+    title: "Customer Feedback Intelligence: ABSA",
+    type: "Natural language processing",
+    preview: "absa",
+    description: "An aspect-based sentiment analysis system for identifying product aspects and classifying review sentiment.",
+    bullets: [
+      "Built a two-stage DeBERTa-v3 model for aspect extraction and sentiment classification.",
+      "Achieved 90.8% F1 for aspect extraction and 87.1% sentiment accuracy on SemEval-2014 Restaurant data."
+    ],
+    tech: ["Python", "PyTorch", "DeBERTa-v3", "FastAPI"],
+  },
+  {
+    title: "Real-Time Financial Fraud Detection & Monitoring",
+    type: "Applied machine learning",
+    preview: "fraud",
+    description: "A fraud detection and monitoring pipeline for highly imbalanced transaction data.",
+    bullets: [
+      "Processed 284K+ transactions with chronological validation and robust transformations for skewed amounts.",
+      "Tuned a class-weighted Random Forest to 76.8% PR-AUC, 79.6% precision, 75.0% recall, and 0.024% false positive rate; added SHAP explanations and PSI drift monitoring."
+    ],
+    tech: ["Python", "Scikit-learn", "XGBoost", "SHAP", "Pandas"],
+  },
+  {
+    title: "Aankh: Smart E-Beat Management & Police Patrol System",
+    type: "Civic technology",
+    preview: "aankh",
+    description: "A web platform for digitizing police patrol workflows, beat allocations, and officer performance analytics.",
+    bullets: [
+      "Built REST APIs and MongoDB workflows for officer records, emergency alerts, and periodic GPS polling.",
+      "Added Mapbox geospatial patrol tracking and Recharts duty analytics."
+    ],
+    tech: ["React", "Node.js", "Express.js", "MongoDB", "Mapbox", "Recharts"],
+  },
+  {
+    title: "Visual RAG: Multimodal E-Commerce Product Assistant",
+    type: "Multimodal AI",
+    preview: "visual-rag",
+    description: "A product discovery assistant that grounds answers in a catalog using image-aware and hybrid retrieval.",
+    bullets: [
+      "Converted product imagery into search vectors and combined FAISS similarity search with metadata filtering and cached indexes.",
+      "Reduced unsupported answers with closed-context prompts, category validation, and structured query parsing."
+    ],
+    tech: ["Python", "LangChain", "Streamlit", "Groq Vision", "FAISS", "Pydantic v2"],
   }
-];
+] as const;
 
 export default function Projects() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }
-    }
-  };
-
   return (
     <section id="projects" className={styles.projectsSection}>
-      <div className="glow-spot" style={{ top: "60%", left: "80%" }}></div>
-
-      <motion.div
-        className={styles.headerArea}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className={styles.sectionBadge}>Build Portfolio</span>
-        <h2 className={`${styles.sectionTitle} gradient-text`}>Featured Projects</h2>
+      <div className={styles.headerArea}>
+        <span className={styles.sectionBadge}>Selected work</span>
+        <h2 className={styles.sectionTitle}>Projects with a point of view.</h2>
         <p className={styles.sectionSubtitle}>
-          A showcase of systems ranging from machine learning pipelines to secure full-stack software.
+          Full-stack products, multi-agent AI systems, and applied machine learning projects from my resume.
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className={styles.grid}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {projects.map((project, index) => {
-          const IconComponent = project.icon;
-          return (
-            <motion.div
-              key={index}
-              className={`${styles.card} glass-card`}
-              variants={cardVariants}
-            >
-              <div className={styles.cardHeader}>
-                <div 
-                  className={styles.iconContainer}
-                  style={{ backgroundColor: `${project.color}10`, border: `1px solid ${project.color}25` }}
-                >
-                  <IconComponent size={24} style={{ color: project.color }} />
-                </div>
-                <h3 className={styles.title}>{project.title}</h3>
+      <div className={styles.grid}>
+        {projects.map((project, index) => (
+          <article key={project.title} className={`${styles.project} ${styles[`project${index + 1}`]}`}>
+            <ProjectPreview variant={project.preview} title={project.title} />
+            <div className={styles.projectBody}>
+              <div className={styles.projectMeta}>
+                <span>{project.type}</span>
+                <span className={styles.projectIndex}>0{index + 1}</span>
               </div>
-
+              <h3 className={styles.title}>{project.title}</h3>
               <p className={styles.description}>{project.description}</p>
-
               <ul className={styles.bulletList}>
-                {project.bullets.map((bullet, bIdx) => (
-                  <li key={bIdx} className={styles.bulletItem}>
-                    {bullet}
-                  </li>
-                ))}
+                {project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
               </ul>
-
               <div className={styles.techStack}>
-                {project.tech.map((tag, tIdx) => (
-                  <span key={tIdx} className={styles.tag}>
-                    {tag}
-                  </span>
-                ))}
+                {project.tech.map((tag) => <span key={tag} className={styles.tag}>{tag}</span>)}
               </div>
-
-              <div className={styles.footerLinks}>
-                <a 
-                  href={project.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className={styles.linkButton}
-                  style={{ "--hover-color": project.color } as React.CSSProperties}
-                >
-                  <Github size={16} /> Code
-                </a>
-                {project.demo && (
-                  <a 
-                    href={project.demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className={styles.linkButton}
-                    style={{ "--hover-color": project.color } as React.CSSProperties}
-                  >
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

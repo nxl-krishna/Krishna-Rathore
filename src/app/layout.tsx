@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { Space_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: "variable",
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "variable",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Krishna Rathore | Research Intern & Full-Stack Developer",
-  description: "Personal website of Krishna Rathore. B.Tech Computer Science student at IIIT Vadodara, Research Intern specializing in Machine Learning, Medical Imaging pipelines, and Full-Stack Development. Publisher of 2 IEEE conference papers.",
+  title: "Krishna Rathore | Software Engineer & AI/ML Developer",
+  description: "Krishna Rathore is a Computer Science student at IIIT Vadodara, working as a Software Development Engineer and building full-stack, generative AI, and machine learning systems.",
   keywords: [
     "Krishna Rathore",
     "IIIT Vadodara",
-    "Research Intern",
-    "IEEE Publications",
+    "Software Development Engineer",
     "Machine Learning",
-    "Medical Imaging ML",
+    "Deep Reinforcement Learning",
+    "UAV-assisted IoT",
+    "Generative AI",
     "Next.js Developer",
     "FastAPI",
     "Computer Science",
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Krishna Rathore" }],
   creator: "Krishna Rathore",
   openGraph: {
-    title: "Krishna Rathore | Research Intern & Full-Stack Developer",
-    description: "B.Tech Student at IIIT Vadodara & Machine Learning Researcher. Discover my published IEEE papers, machine learning projects, and full-stack applications.",
+    title: "Krishna Rathore | Software Engineer & AI/ML Developer",
+    description: "B.Tech Computer Science student at IIIT Vadodara building full-stack applications, generative AI systems, and machine learning projects.",
     type: "website",
     locale: "en_US",
   },
@@ -47,14 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
       <body>
-        <div className="bg-blobs">
-          <div className="blob blob-1"></div>
-          <div className="blob blob-2"></div>
-          <div className="blob blob-3"></div>
-        </div>
-        <div className="bg-grid"></div>
         {children}
       </body>
     </html>

@@ -1,281 +1,202 @@
 .researchSection {
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  color: #f3f0e8;
+}
+
+.researchSection::before {
+  background: rgba(243, 240, 232, 0.22) !important;
+}
+
+.researchSection::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  background: #28483b;
+  content: '';
+  transform: translateX(-50%);
 }
 
 .headerArea {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 800px;
 }
 
 .sectionBadge {
-  display: inline-block;
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.2);
-  color: var(--secondary);
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   margin-bottom: 1rem;
+  color: #c8d574;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sectionBadge::before {
+  width: 1.6rem;
+  height: 1px;
+  background: currentColor;
+  content: '';
 }
 
 .sectionTitle {
+  margin-bottom: 0.8rem;
+  color: #f3f0e8;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 1;
 }
 
 .sectionSubtitle {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  max-width: 560px;
+  color: rgba(243, 240, 232, 0.72);
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-/* Internship Card */
 .internshipCard {
-  margin-top: 1rem;
-  border-left: 4px solid var(--secondary) !important;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+  column-gap: clamp(2rem, 7vw, 7rem);
+  row-gap: 1rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(243, 240, 232, 0.28);
+  border-bottom: 1px solid rgba(243, 240, 232, 0.28);
 }
 
-.cardHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
+.cardHeader { grid-row: span 2; }
 
 .cardMeta {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 1.4rem;
 }
 
 .badgePrimary {
-  background: rgba(168, 85, 247, 0.1);
-  color: #c084fc;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  color: #c8d574;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .dateText {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 500;
+  color: rgba(243, 240, 232, 0.62);
+  font-size: 0.8rem;
 }
 
 .cardTitle {
+  color: #f3f0e8;
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-light);
+  font-size: clamp(1.65rem, 2.4vw, 2.3rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
 }
 
 .cardInstitution {
-  font-size: 1.05rem;
-  color: var(--secondary);
+  margin-top: 0.7rem;
+  color: #d6a58f;
+  font-size: 0.88rem;
   font-weight: 500;
+  line-height: 1.5;
 }
 
 .cardDescription {
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
+  max-width: 680px;
+  color: rgba(243, 240, 232, 0.83);
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-.cardDescription strong {
-  color: var(--text-light);
-}
+.cardDescription strong { color: #f3f0e8; }
 
 .pointsList {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0;
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-left: 0.5rem;
 }
 
 .pointsList li {
   position: relative;
-  padding-left: 1.5rem;
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  padding-left: 1.35rem;
+  color: rgba(243, 240, 232, 0.72);
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
 .pointsList li::before {
-  content: "→";
   position: absolute;
   left: 0;
-  color: var(--secondary);
-  font-weight: bold;
+  color: #c8d574;
+  content: '↳';
 }
 
-.pointsList li strong {
-  color: var(--text-light);
-}
+.pointsList li strong { color: #f3f0e8; }
 
-/* Publications Grid */
 .publicationsContainer {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  gap: 1.1rem;
 }
 
 .subHeading {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
+  color: #c8d574;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
+.grid { display: grid; grid-template-columns: 1fr; }
 
 .pubCard {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(160px, 0.55fr) minmax(0, 1.45fr);
+  column-gap: clamp(2rem, 7vw, 7rem);
+  row-gap: 0.7rem;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid rgba(243, 240, 232, 0.28);
 }
 
 .pubBadgeLine {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.pubBadge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(168, 85, 247, 0.08);
-  border: 1px solid rgba(168, 85, 247, 0.15);
-  color: #c084fc;
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.statusBadge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.15);
-  color: #4ade80;
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.pubTitle {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-light);
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-  flex-grow: 0;
-}
-
-.pubJournal {
-  font-size: 0.9rem;
-  color: var(--secondary);
-  font-weight: 550;
-  margin-bottom: 1.25rem;
-  line-height: 1.4;
-}
-
-.pubTags {
-  display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  grid-row: span 4;
 }
 
-.pubTag {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
+.pubBadge, .statusBadge {
+  color: rgba(243, 240, 232, 0.72);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.expandableArea {
-  margin-top: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 1rem;
-}
+.statusBadge { color: #d6a58f; }
+.pubTitle { color: #f3f0e8; font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -0.05em; line-height: 1.25; }
+.pubJournal { color: #c8d574; font-size: 0.85rem; }
+.pubTags { display: flex; flex-wrap: wrap; gap: 0.45rem 0.9rem; }
+.pubTag { color: rgba(243, 240, 232, 0.68); font-size: 0.7rem; }
+.expandableArea { border-top: 1px solid rgba(243, 240, 232, 0.2); padding-top: 0.65rem; }
+.toggleBtn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0; border: 0; background: none; color: #f3f0e8; font: 600 0.8rem var(--font-sans); cursor: pointer; }
+.toggleBtn:hover { color: #c8d574; }
+.abstractContainer { overflow: hidden; }
+.abstractText { padding: 0.5rem 0 0.7rem; color: rgba(243, 240, 232, 0.72); font-size: 0.84rem; line-height: 1.65; }
 
-.toggleBtn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  transition: color 0.2s;
-  padding: 0.25rem 0;
-}
-
-.toggleBtn:hover {
-  color: var(--text-light);
-}
-
-.abstractContainer {
-  overflow: hidden;
-}
-
-.abstractText {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  padding: 0.75rem 0 0.5rem;
-}
-
-.cardActions {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.paperLink {
-  color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  transition: color 0.2s;
-}
-
-.paperLink:hover {
-  color: #c084fc;
+@media (max-width: 700px) {
+  .internshipCard, .pubCard { grid-template-columns: 1fr; }
+  .cardHeader, .pubBadgeLine { grid-row: auto; }
+  .cardMeta { margin-bottom: 0.8rem; }
 }

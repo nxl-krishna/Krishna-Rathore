@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { Mail, ArrowUp } from "lucide-react";
+import { Mail, Phone, ArrowUp } from "lucide-react";
 import { Github, Linkedin } from "@/components/Icons";
 import styles from "./Footer.module.css";
 
@@ -18,26 +17,23 @@ export default function Footer() {
 
   return (
     <footer id="contact" className={styles.footer}>
-      <div className="glow-spot" style={{ bottom: "0", left: "50%", transform: "translateX(-50%)" }}></div>
-
       <div className={styles.container}>
-        <motion.div
+        <div
           className={styles.connectBox}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <span className={styles.badge}>Get In Touch</span>
-          <h2 className={`${styles.title} gradient-text`}>Let's Create Something Great</h2>
+          <span className={styles.badge}>Next conversation</span>
+          <h2 className={styles.title}>Have a good problem?</h2>
           <p className={styles.description}>
-            I am always open to exploring new research collaborations, engineering challenges, or internship positions. Feel free to shoot me an email!
+            I enjoy building useful software and exploring applied AI. For research, engineering, or collaboration inquiries, reach out.
           </p>
 
           <a href="mailto:krishnarathore2792005@gmail.com" className={`${styles.mailBtn} btn-primary`}>
             <Mail size={18} /> krishnarathore2792005@gmail.com
           </a>
-        </motion.div>
+          <a href="tel:+91900924393" className={`${styles.phoneBtn} btn-secondary`}>
+            <Phone size={18} /> +91-9009242393
+          </a>
+        </div>
 
         <div className={styles.divider}></div>
 
